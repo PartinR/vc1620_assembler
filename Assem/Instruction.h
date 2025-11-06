@@ -43,7 +43,15 @@ public:
         return ST_Comment;
     }
 
-    // Compute the location of the next instruction.
+    /// <summary>
+    /// Computes and returns the location of the instruction immediately following the current one.
+    /// This function is used to advance the location counter based on the instruction type. 
+    /// It must be called after the instruction has been successfully parsed.
+    /// </summary>
+    /// <param name="a_loc">The current memory address (Location Counter) before the current instruction is processed.</param>
+    /// <returns>The calculated location counter value for the instruction immediately following the current one.</returns>
+    /// <author>Race Partin</author>
+    /// <date>10:29pm 10/25/2025</date>
     int LocationNextInstruction( int a_loc );
 
     // To access the label
