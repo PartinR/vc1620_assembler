@@ -1,3 +1,7 @@
+//
+//  Implementation of Instruction Class.
+// 
+
 #include "stdafx.h"
 #include <sstream>
 #include "Instruction.h"

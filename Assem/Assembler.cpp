@@ -1,6 +1,7 @@
 //
-//      Implementation of the Assembler class.
+//  Implementation of the Assembler class.
 //
+
 #include "stdafx.h"
 #include "Assembler.h"
 #include "Instruction.h"

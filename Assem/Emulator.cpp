@@ -1,3 +1,7 @@
+//
+//  Implementation of Emulator class.
+//
+
 #include "stdafx.h"
 #include "Emulator.h"
 

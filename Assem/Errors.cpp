@@ -1,3 +1,7 @@
+//
+//  Implementation of Errors class.
+//
+
 #include "stdafx.h"
 #include "Errors.h"
 

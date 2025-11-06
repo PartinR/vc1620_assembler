@@ -1,6 +1,7 @@
 //
-//  Implementation of file access class.
+//  Implementation of FileAccess class.
 //
+
 #include "stdafx.h"
 #include "FileAccess.h"
 
