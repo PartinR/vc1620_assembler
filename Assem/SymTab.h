@@ -1,9 +1,7 @@
 //
-//		Symbol table class.
+//  Symbol table class.
 //
 #pragma once
-
-
 
 // This class is our symbol table.
 class SymbolTable {

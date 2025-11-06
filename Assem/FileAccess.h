@@ -1,5 +1,5 @@
 //
-//		File access to source file.
+//  File access to source file.
 //
 #ifndef _FILEACCESS_H  // This is the way that multiple inclusions are defended against often used in UNIX
 #define _FILEACCESS_H  // We use pragmas in Visual Studio and g++.  See other include files
