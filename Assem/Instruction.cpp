@@ -56,5 +56,8 @@ bool Instruction::ParseLine( const string& line, string& label, string& opcode, 
 
 int Instruction::LocationNextInstruction(int a_loc)
 {
-
+    if (m_type == ST_Comment || m_type == ST_End)
+    {
+        return a_loc;
+    }
 }
