@@ -21,7 +21,18 @@ public:
         ST_Comment,             // Comment or blank line
         ST_End                  // end instruction.
     };
-    // Parse the Instruction.
+
+    /// <summary>
+    /// Parses a raw assembly instruction line into its core components after first removing 
+    /// any trailing comments defined by a semicolon.
+    /// This function calls RemoveComment to clean the input line and then attempts to parse the 
+    /// result into the internal instruction fields (label, opcode, operands). If the parsing operation
+    /// fails, an error is recorded using the Errors::RecordError utility.
+    /// </summary>
+    /// <param name="a_line">The raw assembly line, potentially containing comments and instruction data.</param>
+    /// <returns>An InstructionType value, currently defaulting to ST_Comment.</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/05/2025 9:43pm</date>
     InstructionType ParseInstruction( string a_line )
     {
         a_line = RemoveComment(a_line);
