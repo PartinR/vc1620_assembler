@@ -53,3 +53,8 @@ bool Instruction::ParseLine( const string& line, string& label, string& opcode, 
 
     return extra == "";
 }
+
+int Instruction::LocationNextInstruction(int a_loc)
+{
+
+}
