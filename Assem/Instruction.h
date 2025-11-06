@@ -59,6 +59,7 @@ public:
 
         return m_Label;
     };
+
     // To determine if a label is blank.
     inline bool isLabel( ) {
 
@@ -85,5 +86,4 @@ private:
 
     bool m_IsNumericOperand;// == true if the operand is numeric.
     int m_Operan1Value;   // The value of the operand if it is numeric.
-
 };
