@@ -23,10 +23,16 @@ public:
     /// <param name="a_loc">The location to be associated with the symbol.</param>
     /// <returns>This function does not return a value (void).</returns>
     /// <author>Race Partin</author>
-    /// <date>01:07pm 10/25/2025</date>
+    /// <date>10/25/2025 01:07pm</date>
     void AddSymbol( const string &a_symbol, int a_loc );
 
-    // Display the symbol table.
+    /// <summary>
+    /// Displays the current contents of the internal symbol table to the console (standard output).
+    /// The output typically includes the symbol index, the symbol name, and its location.
+    /// </summary>
+    /// <returns>This function does not return a value (void).</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/6/2025 10:43pm</date>
     void DisplaySymbolTable( );
 
     /// <summary>
