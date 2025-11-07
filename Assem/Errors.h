@@ -13,7 +13,10 @@ class Errors {
 public:
     
     // Initializes error reports.
-    static void InitErrorReporting( );
+    static void InitErrorReporting()
+    {
+        m_ErrorMsgs.clear();
+    }
 
     // Records an error message.
     static void RecordError( string a_emsg )
@@ -22,7 +25,13 @@ public:
     }
 
     // Displays the collected error message.
-    static void DisplayErrors( );
+    static void DisplayErrors()
+    {
+        for (string& em : m_ErrorMsgs)
+        {
+            cerr << em << endl;
+        }
+    }
 
 private:
 
