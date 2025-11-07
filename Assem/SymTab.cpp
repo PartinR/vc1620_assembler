@@ -37,5 +37,23 @@ bool SymbolTable::LookupSymbol( const string& a_symbol, int& a_loc )
 
 void SymbolTable::DisplaySymbolTable()
 {
-    // TODO: Implement this function
+    cout << "Symbol Table:" << endl;
+    cout << "Symbol#\t" << " Symbol\t" << " Location" << endl;
+
+    int sym_count = 0;
+
+    for (const auto& entry : m_symbolTable)
+    {
+        cout << sym_count++ << "\t";
+        cout << entry.first << "\t";
+
+        if (entry.second == multiplyDefinedSymbol)
+        {
+            cout << "Multiply Defined" << endl;
+        }
+        else
+        {
+            cout << " " << entry.second << endl;
+        }
+    }
 }
