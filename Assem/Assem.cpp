@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include "Assembler.h"
 
-int main(int argc, char* argv[])
+int main( int argc, char* argv[] )
 {
     Assembler assem(argc, argv);
 

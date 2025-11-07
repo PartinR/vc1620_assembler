@@ -24,11 +24,11 @@ void Assembler::PassI( )
     int loc = 0;
 
     // Successively process each line of source code.
-    for( ; ; )
+    for(; ;)
     {
         // Read the next line from the source file.
         string line; 
-        if( ! m_facc.GetNextLine( line ) ) 
+        if(! m_facc.GetNextLine(line)) 
         {
             // If there are no more lines, we are missing an end statement.
             // We will let this error be reported by Pass II.
@@ -36,24 +36,24 @@ void Assembler::PassI( )
         }
 
         // Parse the line and get the instruction type.
-        Instruction::InstructionType st =  m_inst.ParseInstruction( line );
+        Instruction::InstructionType st =  m_inst.ParseInstruction(line);
 
         // If this is an end statement, there is nothing left to do in pass I.
         // Pass II will determine if the end is the last statement and report an error if it isn't.
-        if( st == Instruction::ST_End ) return;
+        if(st == Instruction::ST_End) return;
 
         // Labels can only be on machine language and assembler language
         // instructions.  So, skip comments.
-        if( st == Instruction::ST_Comment )  
+        if(st == Instruction::ST_Comment)  
         {
         	continue;
 	    }
 
         // If the instruction has a label, record it and its location in the
         // symbol table.
-        if( m_inst.isLabel( ) ) 
+        if(m_inst.isLabel()) 
         {
-            m_symtab.AddSymbol( m_inst.GetLabel( ), loc );
+            m_symtab.AddSymbol(m_inst.GetLabel(), loc);
         }
 
         // Compute the location of the next instruction.
