@@ -11,7 +11,8 @@ class Emulator {
 public:
 
     const static int MEMSZ = 100'000;	// The size of the memory of the VC1620.
-    Emulator() 
+
+    Emulator( ) 
     {
          m_memory.resize(MEMSZ, 0);
     }
