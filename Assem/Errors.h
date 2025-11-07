@@ -12,19 +12,37 @@ class Errors {
 
 public:
     
-    // Initializes error reports.
+    /// <summary>
+    /// Initializes or resets the error reporting system by clearing all previously recorded error messages
+    /// (stored in m_ErrorMsgs).
+    /// </summary>
+    /// <returns>This function does not return a value (void).</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/06/2025 8:18pm</date>
     static void InitErrorReporting()
     {
         m_ErrorMsgs.clear();
     }
 
-    // Records an error message.
+    /// <summary>
+    /// Records a specific error message (<paramref name="a_emsg"/>) into the internal collection 
+    /// of errors (m_ErrorMsgs).
+    /// </summary>
+    /// <param name="a_emsg">The descriptive error message to be recorded.</param>
+    /// <returns>This function does not return a value (void).</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/06/2025 8:20pm</date>
     static void RecordError( string a_emsg )
     {
         m_ErrorMsgs.push_back(a_emsg);
     }
 
-    // Displays the collected error message.
+    /// <summary>
+    /// Displays all recorded error messages to the console standard error stream (cerr).
+    /// </summary>
+    /// <returns>This function does not return a value (void).</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/06/2025 8:22pm</date>
     static void DisplayErrors()
     {
         for (string& em : m_ErrorMsgs)
