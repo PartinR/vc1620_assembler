@@ -29,7 +29,14 @@ public:
     // Display the symbol table.
     void DisplaySymbolTable( );
 
-    // Lookup a symbol in the symbol table.
+    /// <summary>
+    /// Looks up a symbol's location in the symbol table.
+    /// </summary>
+    /// <param name="a_symbol">The name of the symbol to search for.</param>
+    /// <param name="a_loc">Receives the location of the symbol if found.</param>
+    /// <returns>true if the symbol was found in the table; otherwise, false.</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/06/2025 10:08pm</date>
     bool LookupSymbol( const string &a_symbol, int &a_loc );
 
 private:
