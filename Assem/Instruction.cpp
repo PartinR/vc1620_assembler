@@ -54,10 +54,52 @@ bool Instruction::ParseLine( const string& line, string& label, string& opcode, 
     return extra == "";
 }
 
-int Instruction::LocationNextInstruction( int a_loc )
+int Instruction::LocationNextInstruction(int a_loc)
 {
     if (m_type == ST_Comment || m_type == ST_End)
     {
         return a_loc;
     }
+
+    if (m_type == ST_AssemblerInstr)
+    {
+        if (m_OpCode == "org")
+        {
+            return a_loc;
+        }
+
+        if (m_OpCode == "ds")
+        {
+            int storage_size = 0;
+
+            try
+            {
+                storage_size = stoi(m_Operand1);
+            }
+            catch (const invalid_argument& e)
+            {
+                Errors::RecordError("ds operand is an invalid integer: " + m_Operand1);
+                return a_loc + 1;
+            }
+            catch (const out_of_range& e)
+            {
+                Errors::RecordError("ds operand is too large: " + m_Operand1);
+                return a_loc + 1;
+            }
+
+            return a_loc + storage_size;
+        }
+
+        if (m_OpCode == "dc")
+        {
+            return a_loc + 1;
+        }
+    }
+
+    if (m_type == ST_MachineLanguage)
+    {
+        return a_loc + 1;
+    }
+
+    return a_loc;
 }

@@ -55,14 +55,14 @@ public:
     int LocationNextInstruction( int a_loc );
 
     // To access the label
-    inline string &GetLabel( ) {
-
+    inline string &GetLabel( ) 
+    {
         return m_Label;
     };
 
     // To determine if a label is blank.
-    inline bool isLabel( ) {
-
+    inline bool isLabel( ) 
+    {
         return ! m_Label.empty();
     };
 
