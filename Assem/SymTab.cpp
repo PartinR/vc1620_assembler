@@ -22,7 +22,6 @@ void SymbolTable::AddSymbol( const string &a_symbol, int a_loc )
 
 bool SymbolTable::LookupSymbol( const string& a_symbol, int& a_loc )
 {
-    // TODO: Implement symbol table display logic here.
     auto it = m_symbolTable.find(a_symbol);
 
     if (it != m_symbolTable.end())
