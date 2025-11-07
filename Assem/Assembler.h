@@ -45,10 +45,13 @@ public:
     void PassII( );
 
     // Display the symbols in the symbol table.
-    void DisplaySymbolTable() { m_symtab.DisplaySymbolTable(); }
+    void DisplaySymbolTable( ) 
+    { 
+        m_symtab.DisplaySymbolTable(); 
+    }
     
     // Run emulator on the translation.
-    void RunProgramInEmulator();
+    void RunProgramInEmulator( );
 
 private:
 

@@ -14,13 +14,13 @@ int main( int argc, char* argv[] )
     assem.PassI();
 
     // Display the symbol table.
-    // assem.DisplaySymbolTable();
+    assem.DisplaySymbolTable();
 
     // Finish the translation and output it to the screen.
-    // assem.PassII();
+    assem.PassII();
 
     // Run the emulator on the translation of the assembler language program that was generated in Pass II.
-    // assem.RunProgramInEmulator();
+    assem.RunProgramInEmulator();
 
     // Terminate indicating all is well.  If there is an unrecoverable error, the 
     // program will terminate at the point that it occurred with an exit(1) call.
