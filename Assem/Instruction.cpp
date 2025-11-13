@@ -13,6 +13,7 @@ string Instruction::RemoveComment( string line ) {
     {
         return line;
     }
+
     return line.erase(pos);
 }
 
@@ -101,11 +102,13 @@ int Instruction::LocationNextInstruction(int a_loc)
             {
                 storage_size = stoi(m_Operand1);
             }
+            // Catch if unable to convert to int
             catch (const invalid_argument& e)
             {
                 Errors::RecordError("ds operand is an invalid integer: " + m_Operand1);
                 return a_loc + 1;
             }
+            // Catch if integer is too large
             catch (const out_of_range& e)
             {
                 Errors::RecordError("ds operand is too large: " + m_Operand1);
