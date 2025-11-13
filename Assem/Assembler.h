@@ -45,7 +45,8 @@ public:
     void PassII( );
 
     /// <summary>
-    /// Displays the contents of the assembler's symbol table.
+    /// Displays the contents of the assembler's symbol table by forwarding
+    /// the request to the internal SymbolTable object.
     /// </summary>
     /// <author>Race Partin</author>
     /// <date>11/12/2025 10:59pm</date>
