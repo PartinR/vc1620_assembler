@@ -44,7 +44,11 @@ public:
     // Pass II - generate a translation
     void PassII( );
 
-    // Display the symbols in the symbol table.
+    /// <summary>
+    /// Displays the contents of the assembler's symbol table.
+    /// </summary>
+    /// <author>Race Partin</author>
+    /// <date>11/12/2025 10:59pm</date>
     void DisplaySymbolTable( ) 
     { 
         m_symtab.DisplaySymbolTable(); 
