@@ -12,16 +12,34 @@ class FileAccess {
 
 public:
 
-    // Opens the file.
-    FileAccess( int argc, char *argv[] );
+    /// <summary>
+    /// Initializes the FileAccess object and opens the source file for reading.
+    /// </summary>
+    /// <param name="argc">The number of command-line arguments passed to the program.</param>
+    /// <param name="argv">The array of command-line arguments; expects argv[1] to be the file name</param>
+    /// <author>Race Partin</author>
+    /// <date>11/12/2025 9:51pm</date.
+    FileAccess( int argc, char* argv[] );
 
-    // Closes the file.
+    /// <summary>
+    /// Destructor for the FileAccess Class. Closes the source file upon object destruction.
+    /// </summary>
+    /// <author>Race Partin</author>
+    /// <date>11/12/2025 10:45pm</date>
     ~FileAccess( );
 
-    // Get the next line from the source file.  Returns true if there was one.
+    /// <summary>
+    /// Retrieves the next line from the source file.
+    /// </summary>
+    /// <param name="a_line">Reference to a string where the retrieved line will be stored.</param>
+    /// <returns>Returns true if line was successfully read, false if eof was reached</returns>
     bool GetNextLine( string &a_line );
 
-    // Put the file pointer back to the beginning of the file.
+    /// <summary>
+    /// Resets the file pointer to the beginning of the source file.
+    /// </summary>
+    /// <author>Race Partin</author>
+    /// <date>11/12/2025 10:49pm</date>
     void rewind( );
 
 private:
