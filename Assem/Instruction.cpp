@@ -54,6 +54,52 @@ bool Instruction::ParseLine( const string& line, string& label, string& opcode, 
     return extra == "";
 }
 
+Instruction::InstructionType Instruction::ParseInstruction(string a_line)
+{
+    a_line = RemoveComment(a_line);
+
+    // Removed comments become whitespace
+    // So label whitespace as ST_Comment
+    if (a_line.find_first_not_of("\t\n\r") == string::npos)
+    {
+        m_type = ST_Comment;
+        return m_type;
+    }
+
+    if (!ParseLine(a_line, m_Label, m_OpCode, m_Operand1, m_Operand2))
+    {
+        Errors::RecordError("Failed to parse instruction: " + a_line);
+    }
+
+    // Convert all m_OpCode(s) to lower
+    for (auto& c : m_OpCode)
+    {
+        c = tolower(c);
+    }
+
+    if (m_OpCode == "end")
+    {
+        m_type = ST_End;
+        return m_type;
+    }
+
+    // Create vector of all potential m_opCodes
+    static const vector<string> machineOps = {"add", "subtract", "mult", "div", "copy", "read", "write", "b", "bm", "bz", "bp", "halt"};
+
+    if (find(machineOps.begin(), machineOps.end(), m_OpCode) != machineOps.end())
+    {
+        m_type = ST_MachineLanguage;
+        return m_type;
+    }
+
+    if (m_OpCode == "org" || m_OpCode == "dc" || m_OpCode == "ds")
+    {
+        m_type = ST_AssemblerInstr;
+        return m_type;
+    }
+
+}
+
 int Instruction::LocationNextInstruction(int a_loc)
 {
     if (m_type == ST_Comment || m_type == ST_End)
