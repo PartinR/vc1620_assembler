@@ -8,6 +8,7 @@
 bool Emulator::runProgram( )
 {
     int loc = 100;
+
     while(true)
     {            
         long long inst = m_memory[loc];
