@@ -64,9 +64,9 @@ Instruction::InstructionType Instruction::ParseInstruction(string a_line)
     }
 
     // Create vector of all potential m_opCodes
-    static const vector<string> machineOps = {"add", "subtract", "mult", "div", "copy", "read", "write", "b", "bm", "bz", "bp", "halt"};
+    static const vector<string> machine_ops = {"add", "subtract", "mult", "div", "copy", "read", "write", "b", "bm", "bz", "bp", "halt"};
 
-    if (find(machineOps.begin(), machineOps.end(), m_OpCode) != machineOps.end())
+    if (find(machine_ops.begin(), machine_ops.end(), m_OpCode) != machine_ops.end())
     {
         m_type = ST_MachineLanguage;
         return m_type;
