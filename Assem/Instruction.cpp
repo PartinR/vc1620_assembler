@@ -34,7 +34,7 @@ bool Instruction::ParseLine( const string& line, string& label, string& opcode, 
     return extra == "";
 }
 
-Instruction::InstructionType Instruction::ParseInstruction(string a_line)
+Instruction::InstructionType Instruction::ParseInstruction( string a_line )
 {
     a_line = RemoveComment(a_line);
 
@@ -80,7 +80,7 @@ Instruction::InstructionType Instruction::ParseInstruction(string a_line)
 
 }
 
-int Instruction::LocationNextInstruction(int a_loc)
+int Instruction::LocationNextInstruction( int a_loc )
 {
     if (m_type == ST_Comment || m_type == ST_End)
     {
