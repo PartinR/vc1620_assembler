@@ -43,7 +43,7 @@ public:
     /// <param name="a_loc">The current memory address (Location Counter) before the current instruction is processed.</param>
     /// <returns>The calculated location counter value for the instruction immediately following the current one.</returns>
     /// <author>Race Partin</author>
-    /// <date>10:29pm 10/25/2025</date>
+    /// <date>10/25/2025 10:29pm</date>
     int LocationNextInstruction( int a_loc );
 
     // To access the label
@@ -68,7 +68,7 @@ private:
     /// <param name="line">The assembly instruction line that may contain a comment.</param>
     /// <returns>The input line with any comment (text after a semicolon) removed.</returns>
     /// <author>Race Partin</author>
-    /// <date>01:04pm 10/25/2025</date>
+    /// <date>10/25/2025 01:04pm</date>
     string RemoveComment(string line);
 
     /// <summary>
@@ -83,7 +83,7 @@ private:
     /// <param name="operand2">Receives the second operand following, if present. Set to empty if no operand.</param>
     /// <returns>Returns true if the line was successfully parsed with no extra tokens collected, false otherwise.</returns>
     /// <author>Race Partin</author>
-    /// <date>12:50pm 10/25/2025</date>
+    /// <date>10/25/2025 12:50pm</date>
     bool ParseLine(const string& line, string& label, string& opcode, string& operand1, string &operand2);
 
     // The elemements of a instruction
