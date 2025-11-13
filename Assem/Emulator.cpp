@@ -6,7 +6,6 @@
 #include "Emulator.h"
 
 bool Emulator::runProgram( )
-
 {
     int loc = 100;
     while(true)
