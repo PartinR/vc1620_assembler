@@ -9,7 +9,6 @@
 #include "FileAccess.h"
 #include "Emulator.h"
 
-
 class Assembler {
 
 public:

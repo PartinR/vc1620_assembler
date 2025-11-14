@@ -5,7 +5,6 @@
 
 #include "Errors.h"
 
-// The elements of an instruction.
 class Instruction {
 
 public:
