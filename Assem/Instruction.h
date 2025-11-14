@@ -33,7 +33,7 @@ public:
     /// <returns>An InstructionType value, currently defaulting to ST_Comment.</returns>
     /// <author>Race Partin</author>
     /// <date>11/05/2025 9:43pm</date>
-    InstructionType ParseInstruction (string a_line );
+    InstructionType ParseInstruction ( string a_line );
 
     /// <summary>
     /// Computes and returns the location of the instruction immediately following the current one.
@@ -69,7 +69,7 @@ private:
     /// <returns>The input line with any comment (text after a semicolon) removed.</returns>
     /// <author>Race Partin</author>
     /// <date>10/25/2025 01:04pm</date>
-    string RemoveComment(string line);
+    string RemoveComment( string line );
 
     /// <summary>
     /// Parses an assembly instruction line into its core components: **label**, **opcode**, and up to two **operands**.
@@ -84,7 +84,7 @@ private:
     /// <returns>Returns true if the line was successfully parsed with no extra tokens collected, false otherwise.</returns>
     /// <author>Race Partin</author>
     /// <date>10/25/2025 12:50pm</date>
-    bool ParseLine(const string& line, string& label, string& opcode, string& operand1, string &operand2);
+    bool ParseLine( const string& line, string& label, string& opcode, string& operand1, string &operand2 );
 
     // The elemements of a instruction
     string m_Label;        // The label.

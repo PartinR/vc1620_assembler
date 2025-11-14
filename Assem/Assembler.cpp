@@ -62,13 +62,13 @@ void Assembler::PassI( )
 }
 
 // TODO: Implement PassII
-void Assembler::PassII()
+void Assembler::PassII( )
 {
 
 }
 
 //TODO: Implement RunProgramInEmulator
-void Assembler::RunProgramInEmulator()
+void Assembler::RunProgramInEmulator( )
 {
 
 }

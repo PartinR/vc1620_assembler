@@ -19,7 +19,7 @@ public:
     /// <returns>This function does not return a value (void).</returns>
     /// <author>Race Partin</author>
     /// <date>11/06/2025 8:18pm</date>
-    static void InitErrorReporting()
+    static void InitErrorReporting( )
     {
         m_ErrorMsgs.clear();
     }
@@ -43,7 +43,7 @@ public:
     /// <returns>This function does not return a value (void).</returns>
     /// <author>Race Partin</author>
     /// <date>11/06/2025 8:22pm</date>
-    static void DisplayErrors()
+    static void DisplayErrors( )
     {
         for (string& em : m_ErrorMsgs)
         {
