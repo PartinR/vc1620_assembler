@@ -21,7 +21,7 @@ Assembler::~Assembler( )
 void Assembler::PassI( ) 
 {
     // Tracks the location of the instructions to be generated.
-    int loc = 0;
+    int loc = 100;
 
     // Successively process each line of source code.
     for(; ;)
