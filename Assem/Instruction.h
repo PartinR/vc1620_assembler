@@ -1,5 +1,5 @@
 //
-//  Class to parse and provide information about instructions.  Note: you will be adding more functionality.
+//  Class to parse and provide information about instructions.
 //
 #pragma once
 

@@ -1,7 +1,7 @@
 //
 //  Emulator class - supports the emulation of VC1620 programs
 //
-#ifndef _EMULATOR_H      // UNIX way of preventing multiple inclusions.
+#ifndef _EMULATOR_H  // UNIX way of preventing multiple inclusions.
 #define _EMULATOR_H
 
 #include <assert.h>
@@ -10,7 +10,7 @@ class Emulator {
 
 public:
 
-    const static int MEMSZ = 100'000;	// The size of the memory of the VC1620.
+    const static int MEMSZ = 100'000;  // The size of the memory of the VC1620.
 
     Emulator( ) 
     {
@@ -29,7 +29,7 @@ public:
 
 private:
 
-    vector <long long> m_memory;  	// Memory for the VC1620
+    vector <long long> m_memory;  // Memory for the VC1620
 };
 
 #endif
