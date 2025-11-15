@@ -29,7 +29,7 @@ public:
 
 private:
 
-    vector <long long> m_memory;  // Memory for the VC1620
+    vector <long long> m_memory;  // Memory for the VC1620.
 };
 
 #endif

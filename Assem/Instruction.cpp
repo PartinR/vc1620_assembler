@@ -51,7 +51,7 @@ Instruction::InstructionType Instruction::ParseInstruction( string a_line )
         Errors::RecordError("Failed to parse instruction: " + a_line);
     }
 
-    // Convert all m_OpCode(s) to lower
+    // Convert all m_OpCode(s) to lower.
     for (auto& c : m_OpCode)
     {
         c = tolower(c);
@@ -63,7 +63,7 @@ Instruction::InstructionType Instruction::ParseInstruction( string a_line )
         return m_type;
     }
 
-    // Create vector of all potential m_opCodes
+    // Create vector of all potential m_opCodes.
     static const vector<string> machine_ops = {"add", "sub", "mult", "div", "copy", "read", "write", "b", "bm", "bz", "bp", "halt"};
 
     if (find(machine_ops.begin(), machine_ops.end(), m_OpCode) != machine_ops.end())
@@ -102,13 +102,13 @@ int Instruction::LocationNextInstruction( int a_loc )
             {
                 storage_size = stoi(m_Operand1);
             }
-            // Catch if unable to convert to int
+            // Catch if unable to convert to int.
             catch (const invalid_argument& e)
             {
                 Errors::RecordError("ds operand is an invalid integer: " + m_Operand1);
                 return a_loc + 1;
             }
-            // Catch if integer is too large
+            // Catch if integer is too large.
             catch (const out_of_range& e)
             {
                 Errors::RecordError("ds operand is too large: " + m_Operand1);

@@ -70,5 +70,7 @@ void Assembler::PassII( )
 //TODO: Implement RunProgramInEmulator
 void Assembler::RunProgramInEmulator( )
 {
-
+    // Reset loc variable and rewind
+    int loc = 100;
+    m_facc.rewind();
 }
