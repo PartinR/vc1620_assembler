@@ -22,6 +22,7 @@ public:
     {
         assert(a_location >= 0 && a_location < MEMSZ); 
         m_memory[a_location] = a_contents;
+        return true;
     }
     
     // Runs the program recorded in memory.
