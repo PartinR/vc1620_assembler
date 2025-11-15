@@ -57,6 +57,16 @@ public:
         return ! m_Label.empty();
     };
 
+    /// <summary>
+    /// Getter of the opcode for the current instruction.
+    /// </summary>
+    /// <returns>A constant reference to the opcode associated with the parsed instruction.</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/15/2025 5:02pm</date>
+    inline const string& GetOpCode()
+    {
+        return m_OpCode;
+    };
 
 private:
 
