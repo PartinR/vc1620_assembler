@@ -45,13 +45,23 @@ public:
     /// <date>10/25/2025 10:29pm</date>
     int LocationNextInstruction( int a_loc );
 
-    // To access the label
-    inline string &GetLabel( ) 
+    /// <summary>
+    /// Getter of the label for the current instruction.
+    /// </summary>
+    /// <returns>A constant reference to the label associated with the parsed instruction.</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/15/2025 5:15pm</date>
+    inline const string &GetLabel( ) 
     {
         return m_Label;
     };
 
-    // To determine if a label is blank.
+    /// <summary>
+    /// Determine if the label is empty.
+    /// </summary>
+    /// <returns>True if the label is not empty, false if it is empty.</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/15/2025 5:17pm</date>
     inline bool isLabel( ) 
     {
         return ! m_Label.empty();
@@ -66,6 +76,28 @@ public:
     inline const string& GetOpCode()
     {
         return m_OpCode;
+    };
+
+    /// <summary>
+    /// Getter of the operand1 for the current instruction.
+    /// </summary>
+    /// <returns>A constant reference to operand1 associated with the parsed instruction.</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/15/2025 5:13pm</date>
+    inline const string& GetOperand1()
+    {
+        return m_Operand1;
+    };
+
+    /// <summary>
+    /// Getter of the operand2 for the current instruction.
+    /// </summary>
+    /// <returns>A constant reference to operand2 associated with the parsed instruction.</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/15/2025 5:14pm</date>
+    inline const string& GetOperand2()
+    {
+        return m_Operand2;
     };
 
 private:
