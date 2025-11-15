@@ -91,7 +91,8 @@ int Instruction::LocationNextInstruction( int a_loc )
     {
         if (m_OpCode == "org")
         {
-            return a_loc;
+            int loc = stoi(m_Operand1);
+            return loc;
         }
 
         if (m_OpCode == "ds")
