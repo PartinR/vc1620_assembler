@@ -99,6 +99,7 @@ void Assembler::PassII( )
 
                 try
                 {
+                    // Convert operand1 into int
                     loc = stoi(m_inst.GetOperand1());
                 }
                 catch (...)
@@ -116,6 +117,7 @@ void Assembler::PassII( )
 
                 try
                 {
+                    // Convert operand1 into int
                     count = stoi(m_inst.GetOperand1());
                 }
                 catch (...)
@@ -135,6 +137,7 @@ void Assembler::PassII( )
 
                 try
                 {
+                    // Convert operand1 into long long
                     value = stoll(m_inst.GetOperand1());
                 }
                 catch (...)
@@ -142,6 +145,9 @@ void Assembler::PassII( )
                     Errors::RecordError("Invalid DS value: " + m_inst.GetOperand1());
 
                 }
+
+                // Load into emulator memory
+                m_emul.insertMemory(loc, value);
 
                 cout << loc << "\t\t" << setw(12) << setfill('0') << value << "\t" << line << endl;
                 loc++;
