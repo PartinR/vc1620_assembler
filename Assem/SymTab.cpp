@@ -38,7 +38,7 @@ bool SymbolTable::LookupSymbol( const string& a_symbol, int& a_loc )
 void SymbolTable::DisplaySymbolTable( )
 {
     cout << "Symbol Table:" << endl;
-    cout << "Symbol#\t" << " Symbol\t" << " Location" << endl;
+    cout << "Symbol#\t" << "Symbol\t" << "Location" << endl;
 
     int sym_count = 0;
 
