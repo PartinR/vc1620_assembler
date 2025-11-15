@@ -91,8 +91,16 @@ int Instruction::LocationNextInstruction( int a_loc )
     {
         if (m_OpCode == "org")
         {
-            int loc = stoi(m_Operand1);
-            return loc;
+            try 
+            {
+                int loc = stoi(m_Operand1);
+                return loc;
+            }
+            catch (...)
+            {
+                Errors::RecordError("Invalid ORG operand: " + m_Operand1);
+                return a_loc;
+            }
         }
 
         if (m_OpCode == "ds")
