@@ -1,5 +1,5 @@
 //
-//  Implementation of Instruction Class.
+//  Implementation of Instruction class.
 // 
 
 #include "stdafx.h"

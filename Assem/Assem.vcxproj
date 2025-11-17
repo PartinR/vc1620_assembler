@@ -129,6 +129,7 @@
     <ClCompile Include="Errors.cpp" />
     <ClCompile Include="FileAccess.cpp" />
     <ClCompile Include="Instruction.cpp" />
+    <ClCompile Include="MachineOps.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="SymTab.cpp" />
   </ItemGroup>
