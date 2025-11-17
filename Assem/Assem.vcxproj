@@ -140,6 +140,7 @@
     <ClInclude Include="Emulator.h" />
     <ClInclude Include="Errors.h" />
     <ClInclude Include="FileAccess.h" />
+    <ClInclude Include="MachineOps.h" />
     <ClInclude Include="Instruction.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SymTab.h" />
