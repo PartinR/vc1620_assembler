@@ -6,6 +6,7 @@
 #include <sstream>
 #include "Instruction.h"
 #include "Errors.h"
+#include "MachineOps.h"
 
 string Instruction::RemoveComment( string line ) {
     size_t pos = line.find(';');
@@ -63,10 +64,8 @@ Instruction::InstructionType Instruction::ParseInstruction( string a_line )
         return m_type;
     }
 
-    // Create vector of all potential m_opCodes.
-    static const vector<string> machine_ops = {"add", "sub", "mult", "div", "copy", "read", "write", "b", "bm", "bz", "bp", "halt"};
-
-    if (find(machine_ops.begin(), machine_ops.end(), m_OpCode) != machine_ops.end())
+    // Use MachineOps to find operator
+    if (MachineOps::GetOpcode().find(m_OpCode) != MachineOps::GetOpcode().end())
     {
         m_type = ST_MachineLanguage;
         return m_type;
@@ -77,7 +76,6 @@ Instruction::InstructionType Instruction::ParseInstruction( string a_line )
         m_type = ST_AssemblerInstr;
         return m_type;
     }
-
 }
 
 int Instruction::LocationNextInstruction( int a_loc )

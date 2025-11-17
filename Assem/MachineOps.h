@@ -12,15 +12,9 @@ public:
 
     MachineOps( ) { };
 
-    /// <summary>
-    /// Get a constant reference to the opcode.
-    /// </summary>
-    /// <returns>Returns constant reference to the unordered_map storing opcodes.</returns>
-    /// <author>Race Partin</author>
-    /// <date>11/16/2025 9:28pm</date.
-    const unordered_map<string, int>& GetOpcode( ) const;
+    static const unordered_map<string, int>& GetOpcode( );
 
 private:
 
-    unordered_map<string, int> m_opcode;
+    static const unordered_map<string, int> m_opcode;
 };
