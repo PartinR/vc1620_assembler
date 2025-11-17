@@ -6,7 +6,6 @@
 #include "MachineOps.h"
 #include <unordered_map>
 
-
 const unordered_map<string, int> MachineOps::m_opcode = {
     {"add", 1}, {"sub", 2}, {"mult", 3},
     {"div", 4}, {"copy", 5}, {"read", 7},
