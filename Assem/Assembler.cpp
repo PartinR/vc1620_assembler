@@ -106,7 +106,7 @@ void Assembler::PassII( )
                 {
                     Errors::RecordError("Invalid ORG value: " + m_inst.GetOperand1());
                 }
-                
+
                 cout << "\t\t\t" << line << endl;
                 continue;
             }
