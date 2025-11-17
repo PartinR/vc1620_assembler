@@ -10,8 +10,6 @@ class MachineOps {
 
 public:
 
-    MachineOps( ) { };
-
     static const unordered_map<string, int>& GetOpcode( );
 
 private:

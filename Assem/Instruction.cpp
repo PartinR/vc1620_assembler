@@ -4,9 +4,9 @@
 
 #include "stdafx.h"
 #include <sstream>
+#include "MachineOps.h"
 #include "Instruction.h"
 #include "Errors.h"
-#include "MachineOps.h"
 
 string Instruction::RemoveComment( string line ) {
     size_t pos = line.find(';');

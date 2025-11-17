@@ -3,8 +3,8 @@
 //
 
 #include "stdafx.h"
-#include <unordered_map>
 #include "MachineOps.h"
+#include <unordered_map>
 
 
 const unordered_map<string, int> MachineOps::m_opcode = {
