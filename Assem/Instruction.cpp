@@ -65,7 +65,7 @@ Instruction::InstructionType Instruction::ParseInstruction( string a_line )
     }
 
     // Use MachineOps to find operator
-    if (MachineOps::GetOpcode().find(m_OpCode) != MachineOps::GetOpcode().end())
+    if (MachineOps::GetOpCodeValue().find(m_OpCode) != MachineOps::GetOpCodeValue().end())
     {
         m_type = ST_MachineLanguage;
         return m_type;
