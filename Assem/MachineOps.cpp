@@ -13,7 +13,7 @@ const unordered_map<string, int> MachineOps::m_opcode = {
     {"bz", 11}, {"bp", 12}, {"halt", 13}
 };
 
-const unordered_map<string, int>& MachineOps::GetOpcode( )
+const unordered_map<string, int>& MachineOps::GetOpCodeValue( )
 {
     return m_opcode;
 }
