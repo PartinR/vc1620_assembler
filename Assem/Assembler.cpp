@@ -21,50 +21,42 @@ Assembler::~Assembler( )
 
 void Assembler::PassI( ) 
 {
-    // Tracks the location of the instructions to be generated.
     int loc = 0;
 
-    // Successively process each line of source code.
     for (; ;)
     {
-        // Read the next line from the source file.
         string line; 
         if (!m_facc.GetNextLine(line)) 
         {
-            // If there are no more lines, we are missing an end statement.
-            // We will let this error be reported by Pass II.
+            // If there are no more lines, we are missing an end statement
             return;
         }
 
-        // Parse the line and get the instruction type.
+        // Parse the line and get the instruction type
         Instruction::InstructionType st =  m_inst.ParseInstruction(line);
 
-        // If this is an end statement, there is nothing left to do in pass I.
-        // Pass II will determine if the end is the last statement and report an error if it isn't.
+        // If this is an end statement, there is nothing left to do in PassI
         if (st == Instruction::ST_End) return;
 
-        // Labels can only be on machine language and assembler language
-        // instructions.  So, skip comments.
+        // Skip comments
         if (st == Instruction::ST_Comment)  
         {
         	continue;
 	    }
 
-        // If the instruction has a label, record it and its location in the
-        // symbol table.
+        // If the instruction has a label, record it and its location in the symbol table
         if (m_inst.isLabel()) 
         {
             m_symtab.AddSymbol(m_inst.GetLabel(), loc);
         }
 
-        // Compute the location of the next instruction.
         loc = m_inst.LocationNextInstruction( loc );
     }
 }
 
-// TODO: Implement PassII
 void Assembler::PassII( )
 {
+    // Rewind and reset location
     int loc = 0;
     m_facc.rewind();
 
@@ -90,6 +82,7 @@ void Assembler::PassII( )
         if (st == Instruction::ST_End)
         {
             cout << "\t\t\t" << line << endl;
+            return;
         }
 
         if (st == Instruction::ST_AssemblerInstr)
@@ -215,10 +208,11 @@ void Assembler::PassII( )
 
             // Encode machine instruction
             contents = opcode_value * 10'000'000'000 + operand1_addr * 100'000 + operand2_addr;
+
+            // Load into emulator memory
             m_emul.insertMemory(loc, contents);
 
             cout << loc << "\t\t" << setw(12) << setfill('0') << contents << "\t" << line << endl;
-
             loc++;
         }
     }
