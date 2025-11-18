@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "Assembler.h"
 #include "Instruction.h"
+#include "MachineOps.h"
 #include "Errors.h"
 
 Assembler::Assembler( int argc, char *argv[] )
@@ -143,7 +144,6 @@ void Assembler::PassII( )
                 catch (...)
                 {
                     Errors::RecordError("Invalid DS value: " + m_inst.GetOperand1());
-
                 }
 
                 // Load into emulator memory
@@ -153,6 +153,73 @@ void Assembler::PassII( )
                 loc++;
                 continue;
             }
+        }
+
+        if (st == Instruction::ST_MachineLanguage)
+        {
+            long long contents = 0;
+            int opcode_value = 0;
+            int operand1_addr = 0;
+            int operand2_addr = 0;
+
+            try
+            {
+                // Get corresponding machine op and address of operands' 1 and 2
+                opcode_value = MachineOps::GetMachineOps().at(m_inst.GetOpCode());
+
+                // Get operand1 location
+                if (!m_inst.GetOperand1().empty()) 
+                {
+                    // NOTE: Could make lambda function here for reusability
+                    // Removes commas from operand1
+                    string op1 = m_inst.GetOperand1();
+                    op1.erase(remove(op1.begin(), op1.end(), ','),op1.end());
+
+                    if (!m_symtab.LookupSymbol(op1, operand1_addr))
+                    {
+                        try
+                        {
+                            operand1_addr = stoi(op1);
+                        }
+                        catch (...)
+                        {
+                            Errors::RecordError("Undefined operand1: " + op1);
+                        }
+                    }
+                }
+
+                // Get operand2 location
+                if (!m_inst.GetOperand2().empty())
+                {
+                    // Remove commas from operand2
+                    string op2 = m_inst.GetOperand2();
+                    op2.erase(remove(op2.begin(), op2.end(), ','), op2.end());
+
+                    if (!m_symtab.LookupSymbol(op2, operand2_addr))
+                    {
+                        try
+                        {
+                            operand2_addr = stoi(op2);
+                        }
+                        catch (...)
+                        {
+                            Errors::RecordError("Undefined operand1: " + op2);
+                        }
+                    }
+                }
+            }
+            catch (...)
+            {
+                Errors::RecordError("Error assembling instruction: " + line);
+            }
+
+            // Encode machine instruction
+            contents = opcode_value * 10'000'000'000 + operand1_addr * 100'000 + operand2_addr;
+            m_emul.insertMemory(loc, contents);
+
+            cout << loc << "\t\t" << setw(12) << setfill('0') << contents << "\t" << line << endl;
+
+            loc++;
         }
     }
 }
