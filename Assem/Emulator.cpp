@@ -13,8 +13,8 @@ bool Emulator::runProgram( )
     {            
         long long inst = m_memory[loc];
 
-        int op_code = inst / 10'000'000'000;
-        int address1 = (inst / 100'000) % 100'000;
+        int op_code = inst / 10'000'000'000LL;
+        int address1 = (inst / 100'000LL) % 100'000;
         int address2 = inst % 100'000;
 
         switch (op_code)
@@ -49,25 +49,25 @@ bool Emulator::runProgram( )
                 loc++;
                 break;
 
-            case 6:  // Read
+            case 7:  // Read
                 cout << "? ";
                 cin >> m_memory[address1];
                 loc++;
                 break;
 
-            case 7:  // Write
+            case 8:  // Write
                 cout << m_memory[address1] << endl;
                 loc++;
                 break;
 
-            case 8:  // Branch
+            case 9:  // Branch
                 loc = address1;
                 break;
 
-            case 9:  // Branch Minus
-                if (m_memory[address1] < 0)
+            case 10:  // Branch Minus
+                if (m_memory[address2] < 0)
                 {
-                    loc = address2;
+                    loc = address1;
                 }
                 else
                 {
@@ -75,10 +75,10 @@ bool Emulator::runProgram( )
                 }
                 break;
 
-            case 10:  // Branch Zero
-                if (m_memory[address1] == 0)
+            case 11:  // Branch Zero
+                if (m_memory[address2] == 0)
                 {
-                    loc = address2;
+                    loc = address1;
                 }
                 else
                 {
@@ -86,10 +86,10 @@ bool Emulator::runProgram( )
                 }
                 break;
 
-            case 11:  // Branch Positive
-                if (m_memory[address1] > 0)
+            case 12:  // Branch Positive
+                if (m_memory[address2] > 0)
                 {
-                    loc = address2;
+                    loc = address1;
                 }
                 else
                 {
@@ -97,7 +97,7 @@ bool Emulator::runProgram( )
                 }
                 break;
 
-            case 12:  // Halt
+            case 13:  // Halt
                 return true;
 
             default:
