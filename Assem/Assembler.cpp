@@ -15,7 +15,7 @@ Assembler::Assembler( int argc, char *argv[] )
     // Nothing else to do here at this point.
 }
 
-// Destructor currently does nothing.  You might need to add something as you develope this project.  If not, we can delete it.
+// Destructor currently does nothing.
 Assembler::~Assembler( )
 {
 }
@@ -29,14 +29,14 @@ void Assembler::PassI( )
         string line; 
         if (!m_facc.GetNextLine(line)) 
         {
-            // If there are no more lines, we are missing an end statement
+            // If there are no more lines, we are missing an end statement.
             return;
         }
 
-        // Parse the line and get the instruction type
+        // Parse the line and get the instruction type.
         Instruction::InstructionType st =  m_inst.ParseInstruction(line);
 
-        // If this is an end statement, there is nothing left to do in PassI
+        // If this is an end statement, there is nothing left to do in PassI.
         if (st == Instruction::ST_End) return;
 
         // Skip comments
@@ -45,7 +45,7 @@ void Assembler::PassI( )
         	continue;
 	    }
 
-        // If the instruction has a label, record it and its location in the symbol table
+        // If the instruction has a label, record it and its location in the symbol table.
         if (m_inst.isLabel()) 
         {
             m_symtab.AddSymbol(m_inst.GetLabel(), loc);
@@ -57,7 +57,7 @@ void Assembler::PassI( )
 
 void Assembler::PassII( )
 {
-    // Rewind and reset location
+    // Rewind and reset location.
     int loc = 0;
     m_facc.rewind();
 
@@ -94,7 +94,7 @@ void Assembler::PassII( )
 
                 try
                 {
-                    // Convert operand1 into int
+                    // Convert operand1 into int.
                     loc = stoi(m_inst.GetOperand1());
                 }
                 catch (...)
@@ -112,7 +112,7 @@ void Assembler::PassII( )
 
                 try
                 {
-                    // Convert operand1 into int
+                    // Convert operand1 into int.
                     count = stoi(m_inst.GetOperand1());
                 }
                 catch (...)
@@ -131,7 +131,7 @@ void Assembler::PassII( )
 
                 try
                 {
-                    // Convert operand1 into long long
+                    // Convert operand1 into long long.
                     value = stoll(m_inst.GetOperand1());
                 }
                 catch (...)
@@ -139,7 +139,7 @@ void Assembler::PassII( )
                     Errors::RecordError("Invalid DS value: " + m_inst.GetOperand1());
                 }
 
-                // Load into emulator memory
+                // Load into emulator memory.
                 m_emul.insertMemory(loc, value);
 
                 cout << loc << "\t\t" << setw(12) << setfill('0') << value << "\t" << line << endl;
@@ -157,14 +157,14 @@ void Assembler::PassII( )
 
             try
             {
-                // Get corresponding machine op and address of operands' 1 and 2
+                // Get corresponding machine op and address of operands' 1 and 2.
                 opcode_value = MachineOps::GetMachineOps().at(m_inst.GetOpCode());
 
-                // Get operand1 location
+                // Get operand1 location.
                 if (!m_inst.GetOperand1().empty()) 
                 {
-                    // NOTE: Could make lambda function here for reusability
-                    // Removes commas from operand1
+                    // NOTE: Could make lambda function here for reusability.
+                    // Removes commas from operand1.
                     string op1 = m_inst.GetOperand1();
                     op1.erase(remove(op1.begin(), op1.end(), ','),op1.end());
 
@@ -181,10 +181,10 @@ void Assembler::PassII( )
                     }
                 }
 
-                // Get operand2 location
+                // Get operand2 location.
                 if (!m_inst.GetOperand2().empty())
                 {
-                    // Remove commas from operand2
+                    // Remove commas from operand2.
                     string op2 = m_inst.GetOperand2();
                     op2.erase(remove(op2.begin(), op2.end(), ','), op2.end());
 
@@ -206,10 +206,10 @@ void Assembler::PassII( )
                 Errors::RecordError("Error assembling instruction: " + line);
             }
 
-            // Encode machine instruction
+            // Encode machine instruction.
             contents = opcode_value * 10'000'000'000 + operand1_addr * 100'000 + operand2_addr;
 
-            // Load into emulator memory
+            // Load into emulator memory.
             m_emul.insertMemory(loc, contents);
 
             cout << loc << "\t\t" << setw(12) << setfill('0') << contents << "\t" << line << endl;
@@ -218,7 +218,6 @@ void Assembler::PassII( )
     }
 }
 
-//TODO: Implement RunProgramInEmulator
 void Assembler::RunProgramInEmulator( )
 {
     cout << "\nResults from emulating program:\n" << endl;

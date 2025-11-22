@@ -39,8 +39,8 @@ Instruction::InstructionType Instruction::ParseInstruction( string a_line )
 {
     a_line = RemoveComment(a_line);
 
-    // Removed comments become whitespace
-    // So label whitespace as ST_Comment
+    // Removed comments become whitespace.
+    // So label whitespace as ST_Comment.
     if (a_line.find_first_not_of("\t\n\r") == string::npos)
     {
         m_type = ST_Comment;
@@ -64,7 +64,7 @@ Instruction::InstructionType Instruction::ParseInstruction( string a_line )
         return m_type;
     }
 
-    // Use MachineOps to find operator
+    // Use MachineOps to find operator.
     if (MachineOps::GetMachineOps().find(m_OpCode) != MachineOps::GetMachineOps().end())
     {
         m_type = ST_MachineLanguage;

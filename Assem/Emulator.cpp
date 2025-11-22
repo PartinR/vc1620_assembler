@@ -13,6 +13,7 @@ bool Emulator::runProgram( )
     {            
         long long inst = m_memory[loc];
 
+        // Seperate inst into components.
         int op_code = inst / 10'000'000'000LL;
         int address1 = (inst / 100'000LL) % 100'000;
         int address2 = inst % 100'000;

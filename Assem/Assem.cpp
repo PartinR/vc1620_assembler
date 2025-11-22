@@ -2,7 +2,7 @@
 //  Assembler main program.
 //
 
-#include "stdafx.h"     // This must be present if you use precompiled headers which you will use. 
+#include "stdafx.h" 
 #include <stdio.h>
 #include "Assembler.h"
 
@@ -10,10 +10,10 @@ int main( int argc, char* argv[] )
 {
     Assembler assem(argc, argv);
 
-    // Establish the location of the labels:
+    // Establish the location of the labels.
     assem.PassI();
 
-    // Display the symbol table.
+    // Display the symbol table
     assem.DisplaySymbolTable();
 
     // Finish the translation and output it to the screen.
