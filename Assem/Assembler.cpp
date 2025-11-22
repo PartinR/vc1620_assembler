@@ -117,7 +117,6 @@ void Assembler::PassII( )
                 catch (...)
                 {
                     Errors::RecordError("Invalid DS value: " + m_inst.GetOperand1());
-
                 }
 
                 cout << loc << "\t\t\t\t" << line << endl;
