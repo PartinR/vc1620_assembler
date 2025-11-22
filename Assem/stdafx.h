@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <tchar.h>
 
-// TODO: reference additional headers your program requires here
 // Standard include files.
 #include <stdio.h>
 #include <iostream>

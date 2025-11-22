@@ -6,10 +6,6 @@
 class SymbolTable {
 
 public:
-
-    // Get rid of constructor and destructor later if you don't need them.
-    SymbolTable( ) {};
-    ~SymbolTable( ) {};
     
     const int multiplyDefinedSymbol = -999;
 

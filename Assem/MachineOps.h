@@ -10,6 +10,12 @@ class MachineOps {
 
 public:
 
+    /// <summary>
+    /// Getter function for the unorderd map of machine operators.
+    /// </summary>
+    /// <returns>A static constant reference to the unordered_map</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/21/2025 9:43pm</date>
     static const unordered_map<string, int>& GetMachineOps( );
 
 private:

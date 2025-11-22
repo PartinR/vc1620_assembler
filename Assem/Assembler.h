@@ -40,7 +40,15 @@ public:
     /// <date>11/05/2025 10:08pm</date>
     void PassI( );
 
-    // Pass II - generate a translation
+    /// <summary>
+    /// Performs Pass II of the assembly process to display the translation of the program and 
+    /// load it into memory for the emulator. This function rewinds and iterates throught the 
+    /// source file line by line again in order to display and insert into the emulator memory.
+    /// Any Errors from Pass I and Pass II will be thrown here as well.
+    /// </summary>
+    /// <returns>This function does not return a value (void).</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/21/2025 9:25pm</date>
     void PassII( );
 
     /// <summary>
@@ -54,7 +62,12 @@ public:
         m_symtab.DisplaySymbolTable(); 
     }
     
-    // Run emulator on the translation.
+    /// <summary>
+    /// This function makes sure that the e_mul object can run the program then proceeds.
+    /// </summary>
+    /// <returns>This function does not return a value (void).</returns>
+    /// <author>Race Partin</author>
+    /// <date>11/21/2025 9:25pm</date>
     void RunProgramInEmulator( );
 
 private:

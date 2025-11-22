@@ -53,8 +53,6 @@ public:
 
 private:
 
-    static vector<string> m_ErrorMsgs;  // This must be declared in the .cpp file.  Why?
-    									// There is an alternative: make this an inline variable.
-    									// This is a newer feature.  We will talk ablout it in class.
+    static vector<string> m_ErrorMsgs;
 };
 #endif
