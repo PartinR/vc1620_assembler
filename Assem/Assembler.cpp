@@ -220,7 +220,7 @@ void Assembler::PassII( )
 
 void Assembler::RunProgramInEmulator( )
 {
-    cout << "\nResults from emulating program:\n" << endl;
+    cout << "\nResults from emulating program:" << endl;
 
     if (!m_emul.runProgram())
     {
