@@ -6,6 +6,7 @@
 #include "Assembler.h"
 #include "Instruction.h"
 #include "MachineOps.h"
+#include "Emulator.h"
 #include "Errors.h"
 
 Assembler::Assembler( int argc, char *argv[] )
@@ -220,5 +221,13 @@ void Assembler::PassII( )
 //TODO: Implement RunProgramInEmulator
 void Assembler::RunProgramInEmulator( )
 {
+    cout << "\nResults from emulating program:\n" << endl;
 
+    if (!m_emul.runProgram())
+    {
+        cout << "Emulator has encountered an error." << endl;
+        return;
+    }
+
+    cout << "End of emulation" << endl;
 }
