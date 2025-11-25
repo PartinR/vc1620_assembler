@@ -102,7 +102,7 @@ void Assembler::PassII( )
                     Errors::RecordError("Invalid ORG value: " + m_inst.GetOperand1());
                 }
 
-                cout << "\t\t\t" << line << endl;
+                cout << "\t\t\t\t" << line << endl;
                 continue;
             }
 
@@ -155,6 +155,12 @@ void Assembler::PassII( )
             int operand1_addr = 0;
             int operand2_addr = 0;
 
+            // Lambda expression: removes commas inside of operand
+            auto cleanOperand = [](string op) {
+                op.erase(remove(op.begin(), op.end(), ','), op.end());
+                return op;
+            };
+
             try
             {
                 // Get corresponding machine op and address of operands' 1 and 2.
@@ -163,10 +169,8 @@ void Assembler::PassII( )
                 // Get operand1 location.
                 if (!m_inst.GetOperand1().empty()) 
                 {
-                    // NOTE: Could make lambda function here for reusability.
-                    // Removes commas from operand1.
-                    string op1 = m_inst.GetOperand1();
-                    op1.erase(remove(op1.begin(), op1.end(), ','),op1.end());
+                    // Remove commas from operand1.
+                    string op1 = cleanOperand(m_inst.GetOperand1());
 
                     if (!m_symtab.LookupSymbol(op1, operand1_addr))
                     {
@@ -185,8 +189,7 @@ void Assembler::PassII( )
                 if (!m_inst.GetOperand2().empty())
                 {
                     // Remove commas from operand2.
-                    string op2 = m_inst.GetOperand2();
-                    op2.erase(remove(op2.begin(), op2.end(), ','), op2.end());
+                    string op2 = cleanOperand(m_inst.GetOperand2());
 
                     if (!m_symtab.LookupSymbol(op2, operand2_addr))
                     {
