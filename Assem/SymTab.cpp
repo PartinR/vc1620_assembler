@@ -1,5 +1,5 @@
 //
-//  Implementation of the symbol table class.  This is the format I want for commenting functions.
+//  Implementation of the symbol table class.
 //
 
 #include "stdafx.h"
