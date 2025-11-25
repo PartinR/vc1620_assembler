@@ -216,6 +216,7 @@ void Assembler::PassII( )
             loc++;
         }
     }
+    Errors::DisplayErrors();
 }
 
 void Assembler::RunProgramInEmulator( )
