@@ -7,6 +7,7 @@
 #include "MachineOps.h"
 #include "Instruction.h"
 #include "Errors.h"
+#include "Emulator.h"
 
 string Instruction::RemoveComment( string line ) {
     size_t pos = line.find(';');
@@ -102,6 +103,11 @@ int Instruction::LocationNextInstruction( int a_loc )
             try 
             {
                 int loc = stoi(m_Operand1);
+                if (loc < 0 || loc >= Emulator::MEMSZ)
+                {
+                    Errors::RecordError("ORG operand out of memory bounds: " + m_Operand1);
+                    return a_loc;
+                }
                 return loc;
             }
             catch (...)
@@ -113,26 +119,22 @@ int Instruction::LocationNextInstruction( int a_loc )
 
         if (m_OpCode == "ds")
         {
-            int storage_size = 0;
-
             try
             {
-                storage_size = stoi(m_Operand1);
+                int storage_size = stoi(m_Operand1);
+                // Check if DS blows up memory
+                if (a_loc + storage_size > Emulator::MEMSZ)
+                {
+                    Errors::RecordError("DS operand causes memory overflow: " + m_Operand1);
+                    return a_loc;
+                }
+                return a_loc + storage_size;
             }
-            // Catch if unable to convert to int.
-            catch (const invalid_argument& e)
+            catch (...)
             {
-                Errors::RecordError("ds operand is an invalid integer: " + m_Operand1);
-                return a_loc + 1;
+                Errors::RecordError("Invalid DS operand: " + m_Operand1);
+                return a_loc;
             }
-            // Catch if integer is too large.
-            catch (const out_of_range& e)
-            {
-                Errors::RecordError("ds operand is too large: " + m_Operand1);
-                return a_loc + 1;
-            }
-
-            return a_loc + storage_size;
         }
 
         if (m_OpCode == "dc")
