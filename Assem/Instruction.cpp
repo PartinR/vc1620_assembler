@@ -22,14 +22,17 @@ bool Instruction::ParseLine( const string& line, string& label, string& opcode, 
 {
     istringstream ins(line);
     label = opcode = operand1 = operand2 = "";
+
     if (line.empty()) return true;
 
     string extra;
 
+    // Check if the line starts with a label (no whitespace at start).
     if (line[0] != ' ' && line[0] != '\t')
     {
         ins >> label;
     }
+
     ins >> opcode >> operand1 >> operand2 >> extra;
 
     return extra == "";
@@ -39,17 +42,19 @@ Instruction::InstructionType Instruction::ParseInstruction( string a_line )
 {
     a_line = RemoveComment(a_line);
 
-    // Removed comments become whitespace.
-    // So label whitespace as ST_Comment.
+    // Identify comments/blank lines.
     if (a_line.find_first_not_of("\t\n\r") == string::npos)
     {
         m_type = ST_Comment;
         return m_type;
     }
 
+    // Handle parse errors (like extra operands) immediately.
     if (!ParseLine(a_line, m_Label, m_OpCode, m_Operand1, m_Operand2))
     {
-        Errors::RecordError("Failed to parse instruction: " + a_line);
+        Errors::RecordError("Syntax Error (Extra operand or invalid format): " + a_line);
+        m_type = ST_Error;
+        return m_type;
     }
 
     // Convert all m_OpCode(s) to lower.
@@ -76,6 +81,11 @@ Instruction::InstructionType Instruction::ParseInstruction( string a_line )
         m_type = ST_AssemblerInstr;
         return m_type;
     }
+
+    // If we reached here, it is not a comment, not a machine op, and not an assembler op.
+    Errors::RecordError("Illegal Opcode: " + m_OpCode);
+    m_type = ST_Error;
+    return m_type;
 }
 
 int Instruction::LocationNextInstruction( int a_loc )
