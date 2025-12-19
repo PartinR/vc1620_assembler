@@ -11,10 +11,11 @@ public:
 
     // Codes to indicate the type of instruction we are processing.
     enum InstructionType {
-        ST_MachineLanguage, 	// A machine language instruction.
+        ST_MachineLanguage, 	// Machine language instruction.
         ST_AssemblerInstr,      // Assembler Language instruction.
-        ST_Comment,             // Comment or blank line
-        ST_End                  // end instruction.
+        ST_Comment,             // Comment or blank line.
+        ST_End,                 // End instruction.
+        ST_Error
     };
 
     /// <summary>
@@ -128,7 +129,6 @@ private:
     string m_OpCode;       // The symbolic op code.
     string m_Operand1;      // The operands. 
     string m_Operand2; 
-
     string m_instruction;  // The original instruction.
 
     // Derived values.
