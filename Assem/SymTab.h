@@ -7,7 +7,7 @@ class SymbolTable {
 
 public:
     
-    const int multiplyDefinedSymbol = -999;
+    static const int multiplyDefinedSymbol = -999;
 
     /// <summary>
     /// Adds a new symbol along with its associated location to the internal symbol table.

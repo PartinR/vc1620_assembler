@@ -72,6 +72,27 @@ public:
 
 private:
 
+    // --- Helper functions for Pass II Refactoring ---
+
+    /// <summary>
+    /// Handles translation and output for Assembler directives (ORG, DS, DC).
+    /// </summary>
+    /// <param name="a_loc">Current memory location (reference to update).</param>
+    /// <param name="a_line">The original source line.</param>
+    void HandleAssemblerInstruction(int& a_loc, const string& a_line);
+
+    /// <summary>
+    /// Handles translation and encoding for Machine Language instructions.
+    /// </summary>
+    /// <param name="a_loc">Current memory location (reference to update).</param>
+    /// <param name="a_line">The original source line.</param>
+    void HandleMachineInstruction(int& a_loc, const string& a_line);
+
+    /// <summary>
+    /// Helper to print standard output lines in Pass II.
+    /// </summary>
+    void PrintTranslation(int a_loc, long long a_contents, const string& a_line);
+
     FileAccess m_facc;	    // File Access object
     SymbolTable m_symtab;   // Symbol table object
     Instruction m_inst;	    // Instruction object
