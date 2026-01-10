@@ -52,8 +52,24 @@ bool Emulator::runProgram( )
 
             case 7:  // Read
                 cout << "? ";
-                cin >> m_memory[address1];
-                loc++;
+                long long input;
+                cin >> input;
+
+                // Check if cin failed (invalid input or number too big)
+                if (!cin)
+                {
+                    cout << "Invalid input. Please enter a valid integer." << endl;
+                    cin.clear();  // Clear the error flag
+
+                    // Discard the bad input from the buffer (up to 10,000 chars or newline)
+                    cin.ignore(10000, '\n');
+                }
+                else
+                {
+                    // Input was good, store it and move to next instruction
+                    m_memory[address1] = input;
+                    loc++;
+                }
                 break;
 
             case 8:  // Write
