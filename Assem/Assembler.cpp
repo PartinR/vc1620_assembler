@@ -106,7 +106,7 @@ void Assembler::PassII( )
     Errors::DisplayErrors();
 }
 
-void Assembler::HandleAssemblerInstruction(int& a_loc, const string& a_line)
+void Assembler::HandleAssemblerInstruction( int& a_loc, const string& a_line )
 {
     string opcode = m_inst.GetOpCode();
 
@@ -160,7 +160,7 @@ void Assembler::HandleAssemblerInstruction(int& a_loc, const string& a_line)
     }
 }
 
-void Assembler::HandleMachineInstruction(int& a_loc, const string& a_line)
+void Assembler::HandleMachineInstruction( int& a_loc, const string& a_line )
 {
     int opcode_value = 0;
     int operand1_addr = 0;
@@ -227,7 +227,7 @@ void Assembler::HandleMachineInstruction(int& a_loc, const string& a_line)
     a_loc++;
 }
 
-void Assembler::PrintTranslation(int a_loc, long long a_contents, const string& a_line)
+void Assembler::PrintTranslation( int a_loc, long long a_contents, const string& a_line )
 {
     cout << left << setw(5) << a_loc << "\t"
         << right << setfill('0') << setw(12) << a_contents << setfill(' ')
