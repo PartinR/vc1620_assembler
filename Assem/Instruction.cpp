@@ -9,7 +9,17 @@
 #include "Errors.h"
 #include "Emulator.h"
 
-string Instruction::RemoveComment( string line ) {
+// Helper check for label validity
+bool isValidLabel( const string& label ) 
+{
+    if (label.empty()) return false;
+
+    // Labels must start with a letter
+    return isalpha(label[0]);
+}
+
+string Instruction::RemoveComment( string line ) 
+{
     size_t pos = line.find(';');
     if (pos == string::npos)
     {
@@ -26,43 +36,53 @@ bool Instruction::ParseLine( const string& line, string& label, string& opcode, 
 
     if (line.empty()) return true;
 
-    string extra;
-
     // Check if the line starts with a label (no whitespace at start).
     if (line[0] != ' ' && line[0] != '\t')
     {
         ins >> label;
     }
 
-    ins >> opcode >> operand1 >> operand2 >> extra;
+    ins >> opcode >> operand1 >> operand2;
 
-    return extra == "";
+    // Robust check for extra operands
+    string extra;
+    ins >> extra;
+
+    // If 'extra' is not empty, we have garbage at the end of the line
+    return extra.empty();
 }
 
 Instruction::InstructionType Instruction::ParseInstruction( string a_line )
 {
-    a_line = RemoveComment(a_line);
+    // Make a local copy to preserve original casing for error messages if needed, 
+    // but parsing generally needs case insensitivity for opcodes.
+    string parseLine = RemoveComment(a_line);
 
     // Identify comments/blank lines.
-    if (a_line.find_first_not_of("\t\n\r") == string::npos)
+    if (parseLine.find_first_not_of(" \t\n\r") == string::npos)
     {
         m_type = ST_Comment;
         return m_type;
     }
 
-    // Handle parse errors (like extra operands) immediately.
-    if (!ParseLine(a_line, m_Label, m_OpCode, m_Operand1, m_Operand2))
+    // Handle parse errors (like extra operands).
+    if (!ParseLine(parseLine, m_Label, m_OpCode, m_Operand1, m_Operand2))
     {
-        Errors::RecordError("Syntax Error (Extra operand or invalid format): " + a_line);
+        Errors::RecordError("Syntax Error (Extra operand): " + a_line);
         m_type = ST_Error;
         return m_type;
     }
 
-    // Convert all m_OpCode(s) to lower.
-    for (auto& c : m_OpCode)
+    // Validate Label Format
+    if (!m_Label.empty() && !isValidLabel(m_Label)) 
     {
-        c = tolower(c);
+        Errors::RecordError("Syntax Error (Invalid Label Format): " + m_Label);
+        m_type = ST_Error;
+        return m_type;
     }
+
+    // Convert OpCode to lower case for consistency
+    for (auto& c : m_OpCode) c = tolower(c);
 
     if (m_OpCode == "end")
     {
@@ -70,20 +90,21 @@ Instruction::InstructionType Instruction::ParseInstruction( string a_line )
         return m_type;
     }
 
-    // Use MachineOps to find operator.
+    // Check Machine Ops
     if (MachineOps::GetMachineOps().find(m_OpCode) != MachineOps::GetMachineOps().end())
     {
         m_type = ST_MachineLanguage;
         return m_type;
     }
 
+    // Check Assembler Ops
     if (m_OpCode == "org" || m_OpCode == "dc" || m_OpCode == "ds")
     {
         m_type = ST_AssemblerInstr;
         return m_type;
     }
 
-    // If we reached here, it is not a comment, not a machine op, and not an assembler op.
+    // If we are here, the opcode is unknown.
     Errors::RecordError("Illegal Opcode: " + m_OpCode);
     m_type = ST_Error;
     return m_type;
@@ -103,6 +124,8 @@ int Instruction::LocationNextInstruction( int a_loc )
             try 
             {
                 int loc = stoi(m_Operand1);
+
+                // Check if ORG is out of memory bounds
                 if (loc < 0 || loc >= Emulator::MEMSZ)
                 {
                     Errors::RecordError("ORG operand out of memory bounds: " + m_Operand1);
@@ -112,7 +135,6 @@ int Instruction::LocationNextInstruction( int a_loc )
             }
             catch (...)
             {
-                Errors::RecordError("Invalid ORG operand: " + m_Operand1);
                 return a_loc;
             }
         }
@@ -122,17 +144,17 @@ int Instruction::LocationNextInstruction( int a_loc )
             try
             {
                 int storage_size = stoi(m_Operand1);
-                // Check if DS blows up memory
+                
+                // Prevent overflow wrapping
                 if (a_loc + storage_size > Emulator::MEMSZ)
                 {
-                    Errors::RecordError("DS operand causes memory overflow: " + m_Operand1);
+                    Errors::RecordError("DS operand causes memory overflow.");
                     return a_loc;
                 }
                 return a_loc + storage_size;
             }
             catch (...)
             {
-                Errors::RecordError("Invalid DS operand: " + m_Operand1);
                 return a_loc;
             }
         }
@@ -143,10 +165,6 @@ int Instruction::LocationNextInstruction( int a_loc )
         }
     }
 
-    if (m_type == ST_MachineLanguage)
-    {
-        return a_loc + 1;
-    }
-
-    return a_loc;
+    // For machine language instructions, simply increment by 1.
+    return a_loc + 1;
 }
