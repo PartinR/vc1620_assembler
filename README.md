@@ -1,5 +1,9 @@
 # VC1620 Assembler
 
+**ACADEMIC INTEGRITY WARNING**
+> This repository contains code developed for a university course. It is uploaded for portfolio and archival purposes only.
+> **Current Students:** Do not copy or reference this code for your own assignments. Doing so may violate Ramapo College's academic integrity policy.
+
 ### Overview
 This project involves developing both an **assembler** and an **emulator** for the **VC1620 computer**.
 The assembler translates assembly code written for the VC1620 into machine code, while the emulator executes that machine code to simulate the behavior of the VC1620 processor.
